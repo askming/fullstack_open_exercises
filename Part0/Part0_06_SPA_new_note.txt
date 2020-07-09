@@ -1,0 +1,9 @@
+title new note SPA version
+
+note over browser:
+after entering the note text and
+hitting the "save" button
+end note
+browser --> browser: add new note to the notes list and render the note list on the page
+browser --> server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+end note
