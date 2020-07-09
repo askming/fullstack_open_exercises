@@ -1,2 +1,2 @@
-# fullstack_open_exercises
+# Fullstack open exercises 
 Exercises submission for Fullstack Open
