@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 
+const SectionHead = ({head}) => {
+  return(
+    <div>
+      <h1>{head}</h1>
+    </div>
+  )
+}
+
 const Button = (props) => (
   <button onClick = {props.handleClick}> {props.text} </button>
 )
@@ -35,15 +43,17 @@ const App = () => {
 
   return (
     <div>
-      <h1>give feedback</h1>
+      <SectionHead head = 'give feedback'/>
 
       <Button handleClick = {handleGoodClick} text = 'good'/>
       <Button handleClick = {handleNeutralClick} text = 'neutral'/>
       <Button handleClick = {handleBadClick} text = 'bad'/>
 
+      <SectionHead head = 'statistics'/>
       <Total cat = 'good' total = {good}/>
       <Total cat = 'neutral' total = {neutral}/>
       <Total cat = 'bad' total = {bad}/>
+      <Total cat = 'all' total = {good + neutral + bad}/>
     </div>
   )
 }
