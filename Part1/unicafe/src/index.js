@@ -16,9 +16,12 @@ const Button = (props) => (
 
 const Statistic = (props) => {
   return(
-    <div>
-      {props.text} {props.value}
-    </div>
+    <>
+      <tr>
+        <td>{props.text}</td> 
+        <td>{props.value}</td>
+      </tr> 
+    </>
   )
 }
 
@@ -39,12 +42,16 @@ const Statistics = (props) => {
   }
   return(
     <div>
-      <Statistic text = "good" value = {props.good} />
-      <Statistic text = "neutral" value = {props.neutral} />
-      <Statistic text = "bad" value = {props.bad} />
-      <Statistic text = "all" value = {totalInput}/>
-      <Statistic text = "average" value = {avg} />
-      <Statistic text = "positive" value = {positivePct} />
+      <table>
+        <tbody>
+          <Statistic text = "good" value = {props.good} />
+          <Statistic text = "neutral" value = {props.neutral} />
+          <Statistic text = "bad" value = {props.bad} />
+          <Statistic text = "all" value = {totalInput}/>
+          <Statistic text = "average" value = {avg} />
+          <Statistic text = "positive" value = {positivePct} />
+        </tbody>
+      </table>
     </div>
   )
 }
