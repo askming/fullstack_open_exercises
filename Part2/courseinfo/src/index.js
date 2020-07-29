@@ -32,22 +32,15 @@ const Part = (props) => {
 //   )
 // }
 
-// const Part = ({ part }) => {
-//   return(
-//     <li>{part.name} {part.exercises}</li>
-//   )
-// }
-
 const Course = ({course}) => {
   return(
     <div>
       <Header course = {course}/>
       {course.parts.map((part) =>
-          <Part part = {part}/>
+          <Part key = {part.id} part = {part}/>
       )}
     </div>
   )
-
 }
 
 const App = () => {
