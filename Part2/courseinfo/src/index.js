@@ -1,31 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Course from './components/Course';
+import App from './App';
 
-// const Total = ({ course }) => {
-//   const sum = course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises
-//   return(
-//     <p><b>total of {sum} exercises</b></p>
-//   ) 
-// }
-
-const Total = ({ course }) => {
-  const total = course.parts.reduce(
-    (acc, cur) => acc + cur.exercises, 0
-    )
-  return(
-    <div>
-      <b> 
-        total of {total} exercises
-      </b>
-    </div>
-  ) 
-}
-
-const App = () => {
-  const course = {
-    id: 1,
+const courses = [
+  {
     name: 'Half Stack application development',
+    id: 1,
     parts: [
       {
         name: 'Fundamentals of React',
@@ -41,17 +21,30 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4
+      }
+    ]
+  }, 
+  {
+    name: 'Node.js',
+    id: 2,
+    parts: [
+      {
+        name: 'Routing',
+        exercises: 3,
+        id: 1
+      },
+      {
+        name: 'Middlewares',
+        exercises: 7,
+        id: 2
       }
     ]
   }
+]
 
-  return(
-    <div>
-      <Course course = {course} />
-      <Total course = {course} />
-      {/* <p> total of {total} exerice </p> */}
-    </div>
-  ) 
-}
-
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App courses = {courses}/>, document.getElementById('root'))
