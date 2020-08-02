@@ -27,7 +27,8 @@ function App() {
   if (searchName !== ''){
       countriesReturned = countries.filter(country => {
         const countryLowerCase = country.name.toLowerCase()
-        return(countryLowerCase.includes(searchName))
+        const searchNameLowerCase = searchName.toLowerCase()
+        return(countryLowerCase.includes(searchNameLowerCase))
     })
   }
 
