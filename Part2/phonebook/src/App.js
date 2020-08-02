@@ -11,12 +11,14 @@ const Person = (props) =>{
 
 const App = () => {
   const [ persons, setPersons ] = useState([
-    { name: 'Arto Hellas', 
-      number: '040-1234567'
-    }
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' },
+    { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
+  const [ searchName, setSearchName ] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -36,6 +38,11 @@ const App = () => {
     }
   }
 
+  const handleSearchPerson = (event) => {
+    console.log(event.target.value)
+    setSearchName(event.target.value)
+  }
+
   const handleNameChange = (event) => {
     console.log(event.target.value)
     setNewName(event.target.value)
@@ -46,24 +53,28 @@ const App = () => {
     setNewNumber(event.target.value)
   }
 
+  const personsToShow = persons.filter(person => person.name.includes(searchName))
+
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit = {addPerson}>
         <div>
-         <div> 
-           name: <input value = {newName} onChange = {handleNameChange}/>
+          filter shown with <input value = {searchName} onChange = {handleSearchPerson}/>
+        </div>
+      <h2>add a new</h2>
+        <form onSubmit = {addPerson}>
+          <div> 
+            name: <input value = {newName} onChange = {handleNameChange}/>
           </div>  
           <div>
             number: <input value = {newNumber} onChange = {handleNumberChange}/>
           </div>  
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+          <div>
+            <button type="submit">add</button>
+          </div>  
+        </form>
       <h2>Numbers</h2>
-      {persons.map((person) => 
+      {personsToShow.map((person) => 
         <Person key = {person.name} name = {person.name} number = {person.number}/>
       )}
     </div>
