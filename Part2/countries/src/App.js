@@ -9,7 +9,6 @@ function App() {
 
   const [countries, setCountries] = useState([])
   const [searchName, setSearchName] = useState('')
-  // const [showAll, setShowAll] = useState(true)
 
   useEffect(() => {
     axios.get('https://restcountries.eu/rest/v2/all')
@@ -20,9 +19,8 @@ function App() {
   }, []) 
 
   const handleSearchName = (event) => {
-    // console.log(event.target.value)
+    console.log(event.target.value)
     setSearchName(event.target.value)
-
   }
 
   let countriesReturned = []

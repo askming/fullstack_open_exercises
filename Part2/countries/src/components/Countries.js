@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 
 // show country wrapper
 const Countries = (props) => {
-    const [showAll, setShowAll] = useState(props.showAll)
+    const [showAll, setShowAll] = useState(true)
     const [countryToShow, setCountryToShow] = useState([])
 
     // show multiple counties with only country names
@@ -13,7 +13,7 @@ const Countries = (props) => {
                 {props.countries.map(country => 
                     <div key = {country.name}>{country.name} <button 
                         onClick = {() => {
-                            setShowAll(!showAll)
+                            setShowAll(!showAll) // event handler to show specific country when "show" button is clicked
                             setCountryToShow(country)
                         }
                         }>show
@@ -46,7 +46,7 @@ const Countries = (props) => {
                 </div>
                 <div>
                 <button onClick = {() => {
-                    setShowAll(true)
+                    setShowAll(true) // reset the event status so that it can start from original
                     setCountryToShow([])
                     }}>back
                 </button>
@@ -59,9 +59,9 @@ const Countries = (props) => {
     ? props.CountriesToShow
     : props.CountriesToShow.filter(country => country.name === countryToShow.name)
 
-    console.log(props.CountriesToShow.length)
-    // console.log(showAll)
-    console.log(countryToShow)
+    // console.log(props.CountriesToShow.length)
+    console.log(showAll)
+    // console.log(countryToShow)
     
     if (CountriesToShow.length > 10) {
         return (<div>Too many matches, specify another filter </div>)
