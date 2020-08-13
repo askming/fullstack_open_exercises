@@ -60,7 +60,7 @@ const Countries = (props) => {
     : props.CountriesToShow.filter(country => country.name === countryToShow.name)
 
     // console.log(props.CountriesToShow.length)
-    console.log(showAll)
+    // console.log(showAll)
     // console.log(countryToShow)
     
     if (CountriesToShow.length > 10) {
