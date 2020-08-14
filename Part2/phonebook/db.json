@@ -2,12 +2,12 @@
   "persons": [
     {
       "name": "lucas yang",
-      "number": "1234567",
+      "number": "1",
       "id": 2
     },
     {
       "name": "hello",
-      "number": "1234556",
+      "number": "2",
       "id": 3
     }
   ]
