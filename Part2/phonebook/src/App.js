@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Persons from './components/Persons'
+import Person from './components/Persons'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 // import axios from 'axios'
@@ -43,6 +43,21 @@ const App = () => {
     }
   }
 
+  const removeHandler = (id) =>{
+    // {event.preventDefault()}
+    // console.log('buttone clicked', event.target)
+    const person = persons.find(p => p.id === id)
+    const name = person.name
+    // console.log(person)
+    
+    if (window.confirm("Delete " + name + " ?")){
+      personService
+      .remove(person)
+
+    setPersons(persons.filter(p => p.id !== id))
+    }
+  }
+
   const handleSearchPerson = (event) => {
     console.log(event.target.value)
     setSearchName(event.target.value)
@@ -58,6 +73,11 @@ const App = () => {
     setNewNumber(event.target.value)
   }
 
+  // const handleRemoveId = (event) =>{
+  //   console.log(event.target.value)
+  //   setRemoveID(event.target.value)
+  // }
+
   // create filtered subset of subjects using filter
   const personsToShow = persons.filter(person => person.name.includes(searchName))
 
@@ -68,9 +88,11 @@ const App = () => {
       <h3>add a new</h3>
         <PersonForm addPerson = {addPerson} name = {newName} namehandler = {handleNameChange} number = {newNumber} numberhandler = {handleNumberChange}/>
       <h3>Numbers</h3>
-        <Persons personsToShow = {personsToShow}/>
-    </div>
-  )
+        {personsToShow.map((person) =>
+          <Person key = {person.name} name = {person.name} number = {person.number} removePerson = {() => removeHandler(person.id)}/>
+        )}
+      </div>
+    )
 }
 
 export default App
