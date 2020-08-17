@@ -12,6 +12,7 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ searchName, setSearchName ] = useState('')
   const [ successMessage, setSuccessMessage] = useState(null)
+  const [ errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -23,13 +24,25 @@ const App = () => {
   }, [])
   // console.log('render', persons.length, 'persons')
 
-  const Notification = ({ message }) => {
+  const NotificationSuccess = ({ message }) => {
     if (message === null) {
       return null
     }
 
     return(
       <div className = "success">
+        {message}
+      </div>
+    )
+  }
+
+  const NotificationError = ({ message }) => {
+    if (message === null) {
+      return null
+    }
+
+    return(
+      <div className = "error">
         {message}
       </div>
     )
@@ -53,16 +66,24 @@ const App = () => {
         .update(changedPerson)
         .then(retunedPerons =>{
           setPersons(persons.map(person => person.name !== personObject.name ? person : personObject))
+        // .finally(success => {
+        setSuccessMessage(
+          `Updated ${personObject.name}`
+        )
+        setTimeout(() =>{
+          setSuccessMessage(null)
+        }, 5000)
+                // })
         })
-        .finally(success => {
-          setSuccessMessage(
-            `Updated ${personObject.name}`
+        .catch(error => {
+          setErrorMessage(
+            `Information of ${personObject.name} has already been removed from server`
           )
           setTimeout(() =>{
-            setSuccessMessage(null)
+            setErrorMessage(null)
           }, 5000)
         })
-        console.log(successMessage)
+        // console.log(successMessage)
         setNewName('')
         setNewNumber('')
         }
@@ -127,7 +148,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message = {successMessage} />
+      <NotificationSuccess message = {successMessage} />
+      <NotificationError message = {errorMessage} />
         <Filter value = {searchName} handler = {handleSearchPerson} />
       <h3>add a new</h3>
         <PersonForm addPerson = {addPerson} name = {newName} namehandler = {handleNameChange} number = {newNumber} numberhandler = {handleNumberChange}/>
