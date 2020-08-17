@@ -32,7 +32,7 @@ function App() {
     })
   }
 
-  // console.log(countriesReturned.length)
+  console.log(countriesReturned.length)
 
   return (
     <div>
